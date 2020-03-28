@@ -1,5 +1,7 @@
 # krypton-docker
 
+[![Docker Image CI](https://github.com/krypton-org/krypton-docker/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/krypton-org/krypton-docker/actions)
+
 ### Quick Start
 
 Example setup with a single Krypton Authentication instance:
