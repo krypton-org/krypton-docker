@@ -1,20 +1,8 @@
 # krypton-docker
 
-### Build
+### Quick Start
 
-```bash
-# Pull the image from Docker Hub
-docker pull krypton-org/krypton-auth
-
-# Or build the image locally
-git clone git@github.com:krypton-org/krypton-docker.git
-cd krypton-docker
-docker build -t krypton-org/krypton-auth .
-```
-
-### Run
-
-Example setup with a single auth service instance:
+Example setup with a single Krypton Authentication instance:
 
 ```bash
 docker network create krypton-auth-net
@@ -29,14 +17,21 @@ docker run \
     --detach \
     --name krypton-auth \
     --network krypton-auth-net \
-    --env MONGODB_URI="mongodb://krypton-auth-db:27017/users"
+    --env MONGODB_URI="mongodb://krypton-auth-db:27017/users" \
     --publish 5000:5000 \
-    krypton-auth
+    krypton-org/krypton-auth
+```
 
+Test the service:
+
+```bash
 curl localhost:5000
-# {"notifications":[{"type":"success","message":"Welcome to GraphQL Auth Service - version 1.1.0"}]}
+# {"errors":[{"message":"Must provide query string.","type":"BadRequestError"}]}
+```
 
-# Cleanup
+To cleanup:
+
+```bash
 docker rm -f krypton-auth
 docker rm -f krypton-auth-db
 docker network rm krypton-auth-net
@@ -57,4 +52,13 @@ docker run -d -e "MONGODB_URI=..." -p 5000:5000 -v /my/dir:/krypton-vol krypton-
 Name           | Default   | Description
 ---------------|-----------|------------
 MONGODB_URI    | -         | MongoDB URI (`mongodb://host:port/collection`)
+
+### Build
+
+```bash
+git clone git@github.com:krypton-org/krypton-docker.git
+cd krypton-docker
+docker build -t krypton-org/krypton-auth .
+```
+
 
