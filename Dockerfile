@@ -10,7 +10,7 @@ ARG ALLOWED_ORIGINS
 # Set environment variable
 ENV PORT=80
 ENV MONGODB_URI mongodb://localhost:27017/users
-ENV ALLOWED_ORIGINS $ALLOWED_ORIGINS
+ENV ALLOWED_ORIGINS
 ENV VOLUME /krypton-vol
 ENV KEYS_PATH /krypton-vol
 
@@ -18,18 +18,22 @@ ENV KEYS_PATH /krypton-vol
 WORKDIR /usr/src/app
 
 # Install Krypton Authentication dependencies
-COPY package*.json ./
-RUN npm ci --only=production
-
-# Build Krypton Authentication
-RUN npm run build
+COPY package*.json tsconfig.json ./
+RUN npm install
 
 # Set volume
-RUN mkdir /krypton && chown -R krypton:krypton /krypton
-VOLUME /krypton
+RUN mkdir /krypton-vol && chown -R krypton:krypton /krypton-vol
+VOLUME /krypton-vol
 
 # Bundle Krypton Authentication source
 COPY . .
 
+# Build Krypton Authentication
+RUN ls
+RUN npm run build
+
+#Clean build
+RUN npm prune --production
+
 EXPOSE 80
-CMD ["node lib/index.js"]
+CMD ["node", "lib/index.js"]
