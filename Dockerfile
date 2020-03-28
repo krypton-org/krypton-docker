@@ -1,13 +1,13 @@
 FROM node:12
 
-# add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
+# Add Krypton user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r krypton && useradd -r -g krypton krypton
 
-#Set args
+# Set args
 ARG MONGODB_URI
 ARG ALLOWED_ORIGINS
 
-#Set MONGODB_URI as mandatory
+# Set MONGODB_URI as mandatory
 RUN test -n "$MONGODB_URI"
 
 # Set environment variable
