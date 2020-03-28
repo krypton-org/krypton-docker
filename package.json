@@ -1,0 +1,31 @@
+{
+  "name": "krypton-docker",
+  "version": "1.0.0",
+  "description": "Docker Image of Krypton Authentication.",
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "node lib/index.js",
+    "build": "tsc",
+    "postinstall": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krypton-org/krypton-heroku.git"
+  },
+  "author": "jrebecchi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jrebecchi/GraphQL-Auth-Service-Heroku/issues"
+  },
+  "homepage": "https://github.com/jrebecchi/GraphQL-Auth-Service-Heroku#readme",
+  "dependencies": {
+    "@krypton-org/krypton-auth": "^1.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemailer": "^6.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.4",
+    "typescript": "^3.8.2"
+  }
+}
