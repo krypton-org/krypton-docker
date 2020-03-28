@@ -7,12 +7,9 @@ RUN groupadd -r krypton && useradd -r -g krypton krypton
 ARG MONGODB_URI
 ARG ALLOWED_ORIGINS
 
-# Set MONGODB_URI as mandatory
-RUN test -n "$MONGODB_URI"
-
 # Set environment variable
 ENV PORT=80
-ENV MONGODB_URI $MONGODB_URI
+ENV MONGODB_URI mongodb://localhost:27017/users
 ENV ALLOWED_ORIGINS $ALLOWED_ORIGINS
 ENV VOLUME /krypton-vol
 ENV KEYS_PATH /krypton-vol
