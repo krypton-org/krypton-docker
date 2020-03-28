@@ -21,6 +21,7 @@ docker run \
     --publish 5000:5000 \
     krypton-org/krypton-auth
 
+sleep 3
 curl localhost:5000
 
 docker rm -f krypton-auth
