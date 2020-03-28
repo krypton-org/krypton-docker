@@ -32,7 +32,7 @@ if (process.env.ALLOWED_ORIGINS
 //Import possible krypton configuration from /krypton-vol
 let config;
 try {
-    config = require(process.env.VOLUME+"/krypton.config.js");
+    config = require("/krypton-vol/krypton.config.js");
 } catch(err) {
     config = {}
 }
@@ -40,10 +40,10 @@ try {
 //Set Krypton Authentication
 app.use(KryptonAuth({ 
     dbAddress: process.env.MONGODB_URI, 
-    privateKeyFilePath: process.env.KEYS_PATH+"/private-key",
-    publicKeyFilePath: process.env.KEYS_PATH+"/public-key",
+    privateKeyFilePath: "/krypton-vol/private-key",
+    publicKeyFilePath: "/krypton-vol/public-key",
     ...config
 }));
 
 //Start server
-app.listen(process.env.PORT, () => { console.log("Listening on port " + process.env.PORT) });
+app.listen(5000, () => { console.log("Listening on port 5000") });

@@ -1,39 +1,23 @@
-FROM node:12
+FROM node:12-alpine
 
-# Add Krypton user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-RUN groupadd -r krypton && useradd -r -g krypton krypton
+# https://www.digitalocean.com/community/tutorials/how-to-build-a-node-js-application-with-docker
+# > By default, the Docker Node image includes a non-root node user
+# > that you can use to avoid running your application container as root.
+# > We will therefore use the node user’s home directory as the working directory
+# > for our application and set them as our user inside the container.
+RUN mkdir -p /home/node/app/node_modules && \
+    chown -R node:node /home/node/app
 
-# Set args
-ARG MONGODB_URI
-ARG ALLOWED_ORIGINS
+RUN mkdir /krypton-vol && \
+    chown -R node:node /krypton-vol
 
-# Set environment variable
-ENV PORT=80
-ENV MONGODB_URI mongodb://localhost:27017/users
-ENV ALLOWED_ORIGINS
-ENV VOLUME /krypton-vol
-ENV KEYS_PATH /krypton-vol
+USER node
+WORKDIR /home/node/app
 
-# Create app directory
-WORKDIR /usr/src/app
+COPY --chown=node:node . .
+RUN npm install && \
+    npm run build && \
+    npm prune --production
 
-# Install Krypton Authentication dependencies
-COPY package*.json tsconfig.json ./
-RUN npm install
-
-# Set volume
-RUN mkdir /krypton-vol && chown -R krypton:krypton /krypton-vol
-VOLUME /krypton-vol
-
-# Bundle Krypton Authentication source
-COPY . .
-
-# Build Krypton Authentication
-RUN ls
-RUN npm run build
-
-#Clean build
-RUN npm prune --production
-
-EXPOSE 80
+EXPOSE 5000
 CMD ["node", "lib/index.js"]
