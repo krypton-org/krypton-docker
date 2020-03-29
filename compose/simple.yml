@@ -1,0 +1,12 @@
+version: '3'
+services:
+  auth:
+    image: "krypton-org/krypton-auth"
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+    environment:
+      MONGODB_URI: "mongodb://mongo:27017/users"
+  mongo:
+    image: "mongo"

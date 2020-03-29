@@ -2,7 +2,21 @@
 
 [![Docker Image CI](https://github.com/krypton-org/krypton-docker/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/krypton-org/krypton-docker/actions)
 
-### Quick Start
+## Quick Start
+
+*NOTE: The image is not currently available on Docker Hub. See the build section below for build instructions.*
+
+### Docker Compose
+
+Compose files for various use cases are available in the `compose` folder.
+For example to run the `simple.yml` file:
+```bash
+docker-compose -f compose/simple.yml up
+curl localhost:5000
+# {"errors":[{"message":"Must provide query string.","type":"BadRequestError"}]}
+```
+
+### Docker
 
 Example setup with a single Krypton Authentication instance:
 
