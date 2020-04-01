@@ -10,4 +10,4 @@ jobs:
     - name: Build the Docker image
       run: docker build -t krypton-org/krypton-auth .
     - name: Test the Docker image
-      run: ./test.sh
+      run: ./test/test.sh
