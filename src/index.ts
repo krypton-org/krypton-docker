@@ -7,7 +7,7 @@ const app = express();
 if (process.env.ALLOWED_ORIGINS 
         && process.env.ALLOWED_ORIGINS !== "") {
     //White list set as allowed origins (CORS)
-    const whiteList = process.env.ALLOWED_ORIGINS.split(";")
+    const whiteList = process.env.ALLOWED_ORIGINS.split(" ")
     const whileSet = new Set<string>(whiteList);
     app.use(cors({
         origin: function (origin, callback) {

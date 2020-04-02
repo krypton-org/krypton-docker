@@ -64,9 +64,10 @@ docker run -d -e "MONGODB_URI=..." -p 5000:5000 -v /my/dir:/krypton-vol kryptono
 
 ### Environement Variables
 
-Name           | Default   | Description
----------------|-----------|------------
-MONGODB_URI    | -         | MongoDB URI (`mongodb://host:port/collection`)
+Name           | Default            | Description
+---------------|--------------------|------------
+MONGODB_URI    | -                  | MongoDB URI (`mongodb://host:port/collection`)
+ALLOWED_ORIGINS| - (all by default) | A space separated list of URLs allowed for [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) (`http://example1.com http://example2.com`)
 
 ### Build
 
