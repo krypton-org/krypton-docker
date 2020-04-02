@@ -1,7 +1,7 @@
 version: '3'
 services:
   auth:
-    image: "krypton-org/krypton-auth"
+    image: "kryptonorg/krypton-auth"
     ports:
       - "5000:5000"
     depends_on:
