@@ -1,6 +1,7 @@
 import express from 'express';
 import KryptonAuth from '@krypton-org/krypton-auth';
 import cors from 'cors';
+import fs from 'fs';
 const app = express();
 
 //Set Cross-Origin Resource Sharing
@@ -32,7 +33,11 @@ if (process.env.ALLOWED_ORIGINS
 //Import possible krypton configuration from /krypton-vol
 let config;
 try {
-    config = require("/krypton-vol/krypton.config.js");
+    if (fs.existsSync('/krypton-vol/krypton.config.js')){
+        config = require('/krypton-vol/krypton.config.js');
+    } else if (fs.existsSync('/krypton-vol/krypton.config.json')){
+        config = require('/krypton-vol/krypton.config.json');
+    }
 } catch(err) {
     config = {}
 }
