@@ -4,11 +4,11 @@ import cors from 'cors';
 import fs from 'fs';
 const app = express();
 
-//Set Cross-Origin Resource Sharing
+// Set Cross-Origin Resource Sharing
 if (process.env.ALLOWED_ORIGINS 
-        && process.env.ALLOWED_ORIGINS !== "") {
-    //White list set as allowed origins (CORS)
-    const whiteList = process.env.ALLOWED_ORIGINS.split(" ")
+        && process.env.ALLOWED_ORIGINS !== '') {
+    // White list set as allowed origins (CORS)
+    const whiteList = process.env.ALLOWED_ORIGINS.split(' ')
     const whileSet = new Set<string>(whiteList);
     app.use(cors({
         origin: function (origin, callback) {
@@ -21,7 +21,7 @@ if (process.env.ALLOWED_ORIGINS
         credentials: true,
     }));
 } else {
-    //All hosts set as allowed origins (CORS)
+    // All hosts set as allowed origins (CORS)
     app.use(cors({
         origin: function (origin, callback) {
             return callback(null, true);
@@ -30,25 +30,28 @@ if (process.env.ALLOWED_ORIGINS
     }));
 }
 
-//Import possible krypton configuration from /krypton-vol
-let config;
-try {
-    if (fs.existsSync('/krypton-vol/krypton.config.js')){
-        config = require('/krypton-vol/krypton.config.js');
-    } else if (fs.existsSync('/krypton-vol/krypton.config.json')){
-        config = require('/krypton-vol/krypton.config.json');
-    }
-} catch(err) {
-    config = {}
+// If it exists, load configuration from /krypton-vol
+let config = {};
+if (fs.existsSync('/krypton-vol/krypton.config.js')) {
+    config = require('/krypton-vol/krypton.config.js');
 }
 
-//Set Krypton Authentication
+// Set `dbAdress` from env. if available
+if (process.env.MONGODB_URI !== undefined) {
+    config['dbAddress'] = process.env.MONGODB_URI;
+}
+
+// Ensure that `dbAddress` is set
+if (config['dbAddress'] === undefined) {
+    throw new Error('`dbAddress` is not set, please set the `MONGODB_URI` environment variable, or the `dbAddress` property in the configuration.');
+}
+
+// Setup Krypton Authentication
 app.use(KryptonAuth({ 
-    dbAddress: process.env.MONGODB_URI, 
-    privateKeyFilePath: "/krypton-vol/private-key",
-    publicKeyFilePath: "/krypton-vol/public-key",
+    privateKeyFilePath: '/krypton-vol/private-key',
+    publicKeyFilePath: '/krypton-vol/public-key',
     ...config
 }));
 
-//Start server
-app.listen(5000, () => { console.log("Listening on port 5000") });
+// Start server
+app.listen(5000, () => { console.log('Listening on port 5000') });
