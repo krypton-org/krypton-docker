@@ -2,7 +2,7 @@
 
 [![Docker Image CI](https://github.com/krypton-org/krypton-docker/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/krypton-org/krypton-docker/actions)
 [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/kryptonorg/krypton-auth?label=Docker%20Image%20Build)](https://hub.docker.com/r/kryptonorg/krypton-auth)
-[![Docker Image Version (latest by date)](https://img.shields.io/docker/v/kryptonorg/krypton-auth?label=Docker%20Image%20Version)](https://hub.docker.com/r/kryptonorg/krypton-auth)
+[![Docker Image Version (latest by date)](https://img.shields.io/docker/v/kryptonorg/krypton-auth?label=Docker%20Image%20Version&sort=semver)](https://hub.docker.com/r/kryptonorg/krypton-auth)
 
 ## Quick Start
 
