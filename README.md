@@ -1,7 +1,8 @@
 # krypton-docker
 
 [![Docker Image CI](https://github.com/krypton-org/krypton-docker/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/krypton-org/krypton-docker/actions)
-[![Docker Build Status](https://img.shields.io/docker/build/kryptonorg/krypton-auth)](https://hub.docker.com/repository/docker/kryptonorg/krypton-auth/general)
+[![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/kryptonorg/krypton-auth?label=Docker%20Image%20Build)](https://hub.docker.com/r/kryptonorg/krypton-auth)
+[![Docker Image Version (latest by date)](https://img.shields.io/docker/v/kryptonorg/krypton-auth?label=Docker%20Image%20Version)](https://hub.docker.com/r/kryptonorg/krypton-auth)
 
 ## Quick Start
 
