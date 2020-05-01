@@ -61,7 +61,7 @@ To specify the configuration, bind a local directory to `/krypton-vol`:
 docker run -d -e "MONGODB_URI=..." -p 5000:5000 -v /my/dir:/krypton-vol kryptonorg/krypton-auth
 ```
 
-Inside this local directory create a file named `krypton.config.js`, inside you can set the different [properties of Krypton](https://krypton-org.github.io/krypton-auth/configuration.html). Here is an example:
+Inside this local directory create a file named `krypton.config.js`. There you can set the different [properties of Krypton](https://krypton-org.github.io/krypton-auth/configuration.html). Here is an example:
 
 ```javascript
 module.exports = {
