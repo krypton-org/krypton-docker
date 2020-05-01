@@ -21,7 +21,6 @@ docker run \
 sleep 10
 
 docker run \
-    --detach \
     --name krypton-auth \
     --network krypton-auth-net \
     --env MONGODB_URI="mongodb://krypton-auth-db:27017/users" \
@@ -29,7 +28,7 @@ docker run \
     -v "$(pwd)/test":/krypton-vol \
     krypton-auth
 
-sleep 3
+sleep 10
 curl localhost:5000
 
 docker rm -f krypton-auth
