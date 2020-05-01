@@ -19,6 +19,7 @@ docker run \
     --network krypton-auth-net \
     --env MONGODB_URI="mongodb://krypton-auth-db:27017/users" \
     --publish 5000:5000 \
+    -v ./test:/krypton-vol \
     krypton-org/krypton-auth
 
 sleep 3

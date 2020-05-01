@@ -61,13 +61,48 @@ To specify the configuration, bind a local directory to `/krypton-vol`:
 docker run -d -e "MONGODB_URI=..." -p 5000:5000 -v /my/dir:/krypton-vol kryptonorg/krypton-auth
 ```
 
-**TODO: Document configuration file format.**
+Inside this local directory create a file named `krypton.config.js`, inside you can set the different [properties of Krypton](https://krypton-org.github.io/krypton-auth/configuration.html). Here is an example:
+
+```javascript
+module.exports = {
+    host: 'https://service-public-adress.com',
+    mailFrom: '"Foo Bar" <donotreply@foobar.com>',
+    nodemailerConfig: {
+        host: 'smtp.example.email',
+        port: 465,
+        secure: true,
+        auth: {
+            user: 'FooBar',
+            pass: 'F@@8aR'
+        }
+    }
+}
+```
+
+
+This configuration file can also be in the JSON format, just name it `krypton.config.json` instead. The above configuration becomes:
+
+```json
+{
+    "host": "https://service-public-adress.com",
+    "mailFrom": "\"Foo Bar\" <donotreply@foobar.com>",
+    "nodemailerConfig": {
+        "host": "smtp.example.email",
+        "port": 465,
+        "secure": true,
+        "auth": {
+            "user": "FooBar",
+            "pass": "F@@8aR"
+        }
+    }
+}
+```
 
 ### Environement Variables
 
 Name           | Default            | Description
 ---------------|--------------------|------------
-MONGODB_URI    | -                  | MongoDB URI (`mongodb://host:port/collection`)
+MONGODB_URI    | -                  | MongoDB URI (`mongodb://host:port/database`)
 ALLOWED_ORIGINS| - (all by default) | A space separated list of URLs allowed for [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) (`http://example1.com http://example2.com`)
 
 ### Build
