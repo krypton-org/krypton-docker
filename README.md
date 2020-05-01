@@ -80,7 +80,7 @@ module.exports = {
 ```
 
 
-This configuration file can also be in the JSON format, just name it `krypton.config.json` instead. The above configuration becomes:
+This configuration file can also be in JSON format, just name it `krypton.config.json`. The above configuration becomes:
 
 ```json
 {
