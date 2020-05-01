@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-pwd
+docker rm -f krypton-auth
+docker rm -f krypton-auth-db
+docker network rm krypton-auth-net
 
 set -o errexit
 set -o pipefail
@@ -15,6 +17,8 @@ docker run \
     --name krypton-auth-db \
     --network krypton-auth-net \
     mongo:latest
+
+sleep 5
 
 docker run \
     --detach \

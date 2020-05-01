@@ -32,7 +32,8 @@ if (process.env.ALLOWED_ORIGINS
 
 // If it exists, load configuration from /krypton-vol
 let config = {};
-if (fs.existsSync('/krypton-vol/krypton.config')) {
+if (fs.existsSync('/krypton-vol/krypton.config.js')
+        || fs.existsSync('/krypton-vol/krypton.config.json')) {
     config = require('/krypton-vol/krypton.config');
 }
 
