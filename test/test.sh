@@ -18,7 +18,7 @@ docker run \
     --network krypton-auth-net \
     mongo:latest
 
-sleep 5
+sleep 10
 
 docker run \
     --detach \
