@@ -32,8 +32,8 @@ if (process.env.ALLOWED_ORIGINS
 
 // If it exists, load configuration from /krypton-vol
 let config = {};
-if (fs.existsSync('/krypton-vol/krypton.config.js')) {
-    config = require('/krypton-vol/krypton.config.js');
+if (fs.existsSync('/krypton-vol/krypton.config')) {
+    config = require('/krypton-vol/krypton.config');
 }
 
 // Set `dbAdress` from env. if available
