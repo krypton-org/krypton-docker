@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
+pwd
 
 set -o errexit
 set -o pipefail
 set -o nounset
 set -o xtrace
+
+docker build . --tag krypton-auth
 
 docker network create krypton-auth-net
 
@@ -11,7 +14,7 @@ docker run \
     --detach \
     --name krypton-auth-db \
     --network krypton-auth-net \
-    mongo
+    mongo:latest
 
 docker run \
     --detach \
@@ -19,8 +22,8 @@ docker run \
     --network krypton-auth-net \
     --env MONGODB_URI="mongodb://krypton-auth-db:27017/users" \
     --publish 5000:5000 \
-    -v ./test:/krypton-vol \
-    krypton-org/krypton-auth
+    -v "$(pwd)/test":/krypton-vol \
+    krypton-auth
 
 sleep 3
 curl localhost:5000
